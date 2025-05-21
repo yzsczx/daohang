@@ -1,0 +1,427 @@
+/* dh/css/style.css */
+
+/* --- Global Resets & Body --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa; /* Bootstrap light grey background */
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* 当使用背景图片时，增加内容区域的可读性 */
+body[style*="background-image"] .card {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+body[style*="background-image"].theme-dark .card {
+    background-color: rgba(44, 48, 52, 0.9);
+}
+
+body[style*="background-image"] .container,
+body[style*="background-image"] .empty-state {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+body[style*="background-image"].theme-dark .container,
+body[style*="background-image"].theme-dark .empty-state {
+    background-color: rgba(44, 48, 52, 0.9);
+}
+
+body.login-page { /* Specific for login page, no top padding needed if header isn't there */
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Slightly different bg for login page */
+}
+
+a {
+    color: #0d6efd; /* Bootstrap primary link color */
+    text-decoration: none;
+}
+a:hover {
+    color: #0a58ca;
+    text-decoration: underline;
+}
+
+/* --- Header --- */
+header { /* Main application header */
+    /* Bootstrap classes like bg-dark, text-white, border-bottom are applied in HTML */
+    /* position: fixed; top: 0; left: 0; right: 0; z-index: 1030; */ /* Already in index.php via sticky-top */
+}
+header h1 {
+    margin: 0;
+    font-size: 1.6em; /* Main site title size */
+    font-weight: 600;
+}
+nav.page-tabs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 20px;
+    display: flex;
+    gap: 5px;
+}
+nav.page-tabs li a {
+    display: block;
+    padding: 0.5rem 1rem; /* Bootstrap nav-link like padding */
+    /* background-color: #34495e; */ /* Let Bootstrap handle this for .nav-link */
+    /* color: #ecf0f1; */
+    border-radius: 0.25rem 0.25rem 0 0; /* Tab-like top radius */
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.9em;
+}
+nav.page-tabs li a.active-page-tab { /* Custom class from index.php */
+    /* color: #fff; background-color: #0d6efd; */ /* Example active tab with Bootstrap primary */
+    font-weight: bold;
+    border-bottom: 2px solid #0d6efd; /* Or use Bootstrap active class features */
+    border-radius: 0.25rem 0.25rem 0 0; /* Ensure radius is maintained */
+}
+nav.page-tabs li a.manage-pages-btn {
+    font-weight: bold;
+    /* background-color: #5cb85c; */ /* Let Bootstrap classes handle colors */
+}
+.user-actions .dropdown-toggle::after { /* Hide default Bootstrap dropdown arrow if using icon */
+    display: none;
+}
+.dropdown-menu .fa-fw {
+    text-align: center; /* For icons in dropdown */
+    width: 1.25em; /* Ensure icons align nicely */
+}
+
+/* Header for manage pages (if different styling needed) */
+header.manage-page-header {
+    background-color: #343a40; /* Bootstrap dark color */
+    color: #f8f9fa;    /* Bootstrap light color */
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+}
+header.manage-page-header h1 { font-size: 1.25rem; margin:0; }
+header.manage-page-header .user-actions a { color: #f8f9fa; }
+
+
+/* --- Main Content Area --- */
+main#dashboard-main.page-content {
+    padding-top: 1rem; /* Space below fixed header */
+}
+
+/* Empty States (general styling) */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: #fff;
+    border-radius: 0.5rem; /* Bootstrap's card radius */
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+    margin: 1rem auto; /* Centering for when it's the only content */
+}
+.empty-state h2 { margin-top: 0; font-size: 1.75rem; margin-bottom: 0.75rem;}
+.empty-state p.lead { font-size: 1.1rem; color: #6c757d; margin-bottom: 1.25rem;}
+
+
+/* Bootstrap Row and Column adjustments (if needed, usually Bootstrap handles this well) */
+/* .row { ... } */
+/* .col { ... } */
+
+/* Card Styling (enhancing Bootstrap's .card) */
+.card { /* Applied to each block */
+    /* height: 100%; */ /* Using Bootstrap's .h-100 on the card div in HTML for equal height */
+    border-radius: 0.5rem; /* Softer radius */
+    box-shadow: 0 0.125rem 0.3rem rgba(0,0,0,.075); /* Slightly more shadow */
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.1);
+}
+.card-header {
+    background-color: #f7f9fc; /* Cleaner header */
+    padding: 0.6rem 1rem; /* Slightly less padding for a tighter look */
+    border-bottom: 1px solid #e9ecef;
+}
+.card-header h5.card-title {
+    font-size: 1rem; /* Adjust title size */
+    font-weight: 500;
+}
+.card-body {
+    padding: 1rem; /* Standard padding */
+    font-size: 0.9rem;
+    /* overflow-y: auto; */ /* Let content decide if scroll is needed, or set max-height */
+}
+.card-body .text-muted.small { /* For "empty" messages */
+    font-size: 0.85em;
+}
+
+
+/* Block Actions Dropdown (in card header) */
+.block-actions-dropdown .dropdown-toggle i {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+.block-actions-dropdown .dropdown-toggle:hover i {
+    color: #212529;
+}
+.block-actions-dropdown .dropdown-menu {
+    font-size: 0.9rem; /* Make dropdown items a bit smaller */
+}
+
+
+/* Links List specific styles */
+.links-list-bs { /* Renamed from links-list-bento */
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+.link-item-bs { /* Renamed from link-item-bento */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0.1rem; /* Slightly more vertical padding */
+    border-bottom: 1px solid #f0f0f0;
+}
+.link-item-bs:last-child { border-bottom: none; }
+
+.link-item-anchor { /* The <a> tag itself */
+    /* color: #0d6efd; */ /* Inherits Bootstrap link color */
+    font-size: 0.9rem; /* Link text size */
+    word-break: break-all; /* Prevent long URLs/titles from breaking layout */
+}
+.link-favicon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+.link-favicon-placeholder {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    text-align: center;
+}
+.link-favicon-placeholder i { color: #888; }
+.link-title {
+    /* flex-grow: 1; */ /* Already on the <a> tag */
+}
+
+.link-actions-bs .btn-icon { /* Renamed from link-actions-bento */
+    color: #adb5bd; /* Lighter grey for less obtrusive actions */
+    font-size: 0.8em;
+    padding: 2px;
+    visibility: hidden; opacity: 0;
+    transition: opacity 0.1s linear, color 0.1s linear;
+}
+.link-item-bs:hover .link-actions-bs .btn-icon { visibility: visible; opacity: 1; }
+.link-actions-bs .btn-icon:hover { color: #495057; } /* Darker on hover */
+.link-actions-bs .text-danger:hover { color: #bd2130 !important; }
+
+
+/* Notes Content */
+.notes-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.875em;
+    background-color: #fffef0;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid #fdf2cc;
+    line-height: 1.5;
+    /* max-height: 200px; overflow-y: auto; */ /* Uncomment if you want fixed height with scroll */
+}
+
+/* Add New Item / Column Actions Buttons */
+.add-new-item {
+    text-align: center;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #e9ecef;
+}
+.column-actions { /* For "+ Add Block to this Column" button in index.php */
+    text-align: center;
+    margin-top: auto; /* Pushes to bottom if parent column is d-flex flex-column */
+    padding-top: 1rem;
+    border-top: 1px dashed #e0e0e0;
+}
+.add-block-to-page-area { /* For the big "+ Add Block to this Page" button at the very bottom */
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+
+/* --- Footer --- */
+footer {
+    font-size: 0.875em;
+    /* color: #6c757d; */ /* Set by Bootstrap bg-light */
+    /* background-color: #f8f9fa; */ /* Set by Bootstrap bg-light */
+    /* border-top: 1px solid #dee2e6; */ /* Set by Bootstrap border-top */
+}
+
+
+/* --- General Utility, Alert, Form, Table Styles (from manage_pages for consistency) --- */
+.btn-icon {
+    background: none; border: none; padding: 0.2rem 0.4rem; color: #6c757d; cursor: pointer;
+}
+.btn-icon:hover { color: #212529; }
+.btn-icon-delete:hover { color: #dc3545; }
+
+.page-message.alert { /* For messages at the top of index.php */
+    position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+    z-index: 1055; /* Above Bootstrap's default modal z-index */
+    min-width: 300px; max-width: 600px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+/* Login Page Specific Styles */
+.login-container {
+    width: 100%; max-width: 330px; padding: 2rem; margin: auto; /* Increased padding */
+    background-color: rgba(255, 255, 255, 0.9); border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15); text-align: center;
+}
+.login-container h1 { margin-top: 0; margin-bottom: 1.5rem; }
+.login-container input[type="password"] { /* Be more specific */
+    margin-bottom: 1rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+.login-container button { /* Button full width */
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+.login-container button:hover {
+    background-color: #0069d9;
+}
+.login-container .error { color: #dc3545; margin-bottom: 1rem; font-size:0.9rem; }
+
+/* 当登录页面有背景图片时 */
+body.login-page[style*="background-image"] .login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.3);
+}
+
+
+/* Form Group Styles (for manage_*.php pages) */
+.container .form-group { margin-bottom: 1rem; } /* Ensure it applies inside .container */
+.container .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.container .form-group .form-control, /* Bootstrap class */
+.container .form-group input[type="text"],
+.container .form-group input[type="number"],
+.container .form-group input[type="password"],
+.container .form-group input[type="url"],
+.container .form-group textarea,
+.container .form-group select {
+    display: block; width: 100%; box-sizing: border-box; padding: 0.375rem 0.75rem;
+    font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529;
+    background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da;
+    border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.container .form-group .form-control:focus,
+.container .form-group input[type="text"]:focus, /* ... other input types ... */
+.container .form-group textarea:focus,
+.container .form-group select:focus {
+    border-color: #86b7fe; outline: 0; box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+}
+.container .form-group small.form-text, .container .form-text.text-muted { /* Bootstrap classes */
+    display: block; margin-top: 0.25rem; font-size: 0.875em; color: #6c757d;
+}
+
+
+/* Admin Table Styles (for manage_pages.php) */
+table.admin-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9em;
+    background-color: #fff; /* Add background for table */
+}
+table.admin-table th, table.admin-table td {
+    border: 1px solid #dee2e6; padding: 0.6rem; text-align: left; vertical-align: middle;
+}
+table.admin-table th { background-color: #e9ecef; font-weight: 500; color: #495057; }
+table.admin-table td.actions .btn { margin-right: 0.25rem; margin-bottom: 0.25rem; }
+table.admin-table td.actions .btn:last-child { margin-right: 0; }
+
+
+/* Dark Theme Overrides (Example - keep or extend from your dark.css) */
+body.theme-dark {
+    background-color: #212529; color: #dee2e6;
+}
+body.theme-dark header { background-color: #1a1d20; border-bottom-color: #32383e !important; }
+body.theme-dark header h1, body.theme-dark header .nav-link, body.theme-dark header .user-actions span, body.theme-dark header .user-actions a { color: #f8f9fa; }
+body.theme-dark nav.page-tabs li a { background-color: #343a40; color: #adb5bd; }
+body.theme-dark nav.page-tabs li a.active-page-tab { background-color: #212529; color: #fff; border-bottom-color: #0d6efd;}
+body.theme-dark nav.page-tabs li a.manage-pages-btn { background-color: #28582a; }
+body.theme-dark .user-actions a:hover { background-color: #343a40; }
+body.theme-dark .dropdown-menu.dropdown-menu-dark { background-color: #2c3034; border-color: #32383e; }
+body.theme-dark .dropdown-menu.dropdown-menu-dark .dropdown-item { color: #adb5bd; }
+body.theme-dark .dropdown-menu.dropdown-menu-dark .dropdown-item:hover, body.theme-dark .dropdown-menu.dropdown-menu-dark .dropdown-item:focus { background-color: #343a40; color: #fff; }
+body.theme-dark .dropdown-menu.dropdown-menu-dark .dropdown-divider { border-top-color: #32383e;}
+
+
+body.theme-dark .card { background-color: #2c3034; border-color: #3a3f44; box-shadow: 0 0.125rem 0.3rem rgba(0,0,0,.25); }
+body.theme-dark .card:hover { box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.3); }
+body.theme-dark .card-header { background-color: #23272b; border-bottom-color: #3a3f44; }
+body.theme-dark .card-header h5.card-title { color: #e9ecef; }
+body.theme-dark .card-body { color: #adb5bd; }
+body.theme-dark .text-muted { color: #6c757d !important; } /* Bootstrap class */
+body.theme-dark .link-item-bs { border-bottom-color: #3a3f44; }
+body.theme-dark .link-item-anchor { color: #8ab4f8; }
+body.theme-dark .link-item-anchor:hover { color: #a9c9fb; }
+body.theme-dark .link-actions-bs .btn-icon { color: #6c757d; }
+body.theme-dark .link-actions-bs .btn-icon:hover { color: #adb5bd; }
+body.theme-dark .link-actions-bs .text-danger:hover { color: #e45a66 !important; }
+body.theme-dark .notes-content { background-color: #262a2e; border-color: #3a3f44; color: #adb5bd; }
+body.theme-dark .add-new-item, body.theme-dark .column-actions { border-top-color: #3a3f44; }
+body.theme-dark .btn-outline-primary { color: #8ab4f8; border-color: #8ab4f8; }
+body.theme-dark .btn-outline-primary:hover { color: #212529; background-color: #8ab4f8; border-color: #8ab4f8; }
+body.theme-dark .btn-outline-secondary { color: #adb5bd; border-color: #adb5bd; }
+body.theme-dark .btn-outline-secondary:hover { color: #212529; background-color: #adb5bd; border-color: #adb5bd; }
+
+body.theme-dark footer.bg-light { background-color: #23272b !important; color: #adb5bd; border-top-color: #3a3f44 !important; }
+body.theme-dark .alert-success { color: #c3e6cb; background-color: #155724; border-color: #1c7430;}
+body.theme-dark .alert-danger { color: #f5c6cb; background-color: #721c24; border-color: #8c1c24;}
+
+/* Dark theme for login page */
+body.login-page.theme-dark { background-color: #212529; }
+body.login-page.theme-dark .login-container { background-color: #2c3034; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+body.login-page.theme-dark .login-container h1 { color: #f8f9fa; }
+body.login-page.theme-dark .login-container input[type="password"] { background-color: #343a40; border-color: #495057; color: #e9ecef; }
+body.login-page.theme-dark .login-container input[type="password"]::placeholder { color: #6c757d; }
+body.login-page.theme-dark .login-container .btn-primary { background-color: #0d6efd; border-color: #0d6efd; } /* Ensure login button matches general primary */
+body.login-page.theme-dark .login-container .btn-primary:hover { background-color: #0b5ed7; border-color: #0a58ca; }
+body.login-page.theme-dark .error { color: #f1949e; }
+
+/* Dark theme for admin/manage pages in .container */
+body.theme-dark .container { background-color: #2c3034; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+body.theme-dark .container .page-header { border-bottom-color: #3a3f44; }
+body.theme-dark .container .page-header h2 { color: #f8f9fa; }
+body.theme-dark .container table.admin-table { background-color: #2c3034; }
+body.theme-dark .container table.admin-table th, body.theme-dark .container table.admin-table td { border-color: #495057; color: #adb5bd;}
+body.theme-dark .container table.admin-table th { background-color: #23272b; color: #e9ecef; }
+body.theme-dark .container .form-group label { color: #adb5bd; }
+body.theme-dark .container .form-group .form-control,
+body.theme-dark .container .form-group input[type="text"],
+body.theme-dark .container .form-group input[type="number"],
+body.theme-dark .container .form-group input[type="password"],
+body.theme-dark .container .form-group input[type="url"],
+body.theme-dark .container .form-group textarea,
+body.theme-dark .container .form-group select { background-color: #343a40; border-color: #495057; color: #e9ecef; }
+body.theme-dark .container .form-group .form-control::placeholder { color: #6c757d; }
+body.theme-dark .container .form-group .form-control:focus { border-color: #86b7fe; box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25); }
+body.theme-dark .container .form-group small.form-text, body.theme-dark .container .form-text.text-muted { color: #868e96; }

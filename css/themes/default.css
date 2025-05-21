@@ -1,0 +1,96 @@
+:root {
+    --nav-bg-color: rgba(0, 0, 0, 0.6);
+    --nav-text-color: #ffffff;
+    --nav-hover-color: rgba(255, 255, 255, 0.2);
+    --nav-border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 顶部导航栏样式 */
+.nav-container {
+    background-color: var(--nav-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--nav-border-color);
+    padding: 0.5rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.nav-container a {
+    color: var(--nav-text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-container a:hover {
+    background-color: var(--nav-hover-color);
+}
+
+/* 主要内容区域调整 */
+.main-content {
+    padding-top: 60px; /* 为固定导航栏留出空间 */
+}
+
+/* 背景图片容器 */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 0.3s ease;
+}
+
+/* 链接块样式优化 */
+.block {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.block-header {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px 8px 0 0;
+}
+
+/* 链接样式优化 */
+.link-item {
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.link-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateX(5px);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0.3rem;
+    }
+    
+    .nav-container a {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.9rem;
+    }
+    
+    .main-content {
+        padding-top: 50px;
+    }
+}
